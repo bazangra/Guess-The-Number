@@ -1,0 +1,48 @@
+#Number Guessing Game Objectives:
+
+from art import logo
+import os
+import random
+
+print("Welcome to the Guess The Fucking Number! \nI am thinking of a number between 1 and 100.")
+
+number = random.choice(range(0,100))
+
+print(f"Psst, the correct answer is {number}")
+
+difficulty = input("Choose a difficulty. Type 'easy' or 'hard'. ")
+
+attempts = 0
+if difficulty == 'easy':
+  attempts = 10
+elif difficulty == 'hard':
+  attempts = 5
+
+def check(guess, number, attempts):
+  if attempts == 0 and guess > number:
+    print("Too high.\nYou have run out of guesses, you lose.")
+    return False
+  elif attempts == 0 and guess < number:
+    print("Too low.\nYou have run out of guesses, you lose.")
+    return False
+  elif guess == number:
+    return False
+  elif guess > number:
+    print(f"Too high.\nGuess again.")
+    return True
+  elif guess < number:
+    print(f"Too low.\nGuess again.")
+    return True
+  else:
+    return True
+
+cont = True
+while cont:
+  guess = int(input(f"You have {attempts} attempts remaining to make a guess.\nMake a guess: "))
+  if guess == number:
+    print(f"You got it. The answer was {number}.")
+  elif guess > number:
+    attempts = attempts -1
+  elif guess < number:
+    attempts = attempts -1
+  cont = check(guess, number, attempts)
